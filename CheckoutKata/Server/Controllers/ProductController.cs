@@ -1,6 +1,7 @@
 ﻿using CheckoutKata.Server.Services.ProductServices;
 using CheckoutKata.Shared;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,7 +26,15 @@ namespace CheckoutKata.Server.Controllers
         [HttpGet("{Id}")]
         public async Task<ActionResult<Product>> GetProduct(int Id)
         {
-            return Ok(_productService.GetProduct(Id));
+            try
+            {
+                return Ok(_productService.GetProduct(Id));
+            }
+            catch(Exception e)
+            {
+                string ex = e.Message.ToString();
+                return NotFound();
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
-﻿using CheckoutKata.Shared;
-using System;
+﻿using CheckoutKata.Server.Data;
+using CheckoutKata.Shared;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,44 +9,21 @@ namespace CheckoutKata.Server.Services.ProductServices
 {
     public class ProductService : IProductService
     {
-        public List<Product> Products { get; set; } = new List<Product>
+        private readonly DataContext _context;
+        public ProductService(DataContext Context)
         {
-            new Product
-            {
-                Id = 1,
-                Title = "A",
-                Price = 10
-            },
-            new Product
-            {
-                Id = 2,
-                Title = "B",
-                Price = 15,
-                Discount = new Discount{ DiscountTitle = "3 For 40" }
-            },
-            new Product
-            {
-                Id = 3,
-                Title = "C",
-                Price = 40
-            },
-            new Product
-            {
-                Id = 4,
-                Title = "D",
-                Price = 55,
-                Discount = new Discount{ DiscountTitle = "25% off every 2 purchased together" }
-            }
-        };
+            _context = Context;
+        }
 
         public async Task<List<Product>> GetAllProducts()
         {
-            return Products;
+            return await _context.Products.ToListAsync();
         }
 
         public async Task<Product> GetProduct(int Id)
         {
-            return Products.FirstOrDefault(p => p.Id == Id);
+            Product p = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == Id);
+            return p;
         }
     }
 }
