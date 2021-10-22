@@ -1,0 +1,55 @@
+﻿<h3>Product Skus</h3>
+
+<ul class="list-unstyled">
+    @foreach (var product in products)
+    {
+        <li class="media my-3">
+            <div class="media-img-wrapper mr-4">
+                <a href="/product/@product.Id"></a>
+                    <img class="media-img" src="@product.Image" alt="@product.Title"/>
+            </div>
+            <div class="media-body">
+                <a href="/product/@product.Id">
+                    <h4 class="mb-0">Item SKU: @product.Title</h4>
+                </a>
+                <p>Unit Price: @product.Price</p>
+                @if(product.Discount != null)
+                {
+                    <h6>Promotion: @product.Discount.DiscountTitle</h6>
+                }
+            </div>
+        </li>
+    }
+</ul>
+
+@code {
+    List<Product> products = new List<Product>
+    {
+        new Product
+        {
+            Id = 1,
+            Title = "A",
+            Price = 10
+        },
+        new Product
+        {
+            Id = 2,
+            Title = "B",
+            Price = 15,
+            Discount = new Discount{ DiscountTitle = "3 For 40" }
+        },
+        new Product
+        {
+            Id = 3,
+            Title = "C",
+            Price = 40
+        },
+        new Product
+        {
+            Id = 4,
+            Title = "D",
+            Price = 55,
+            Discount = new Discount{ DiscountTitle = "25% off every 2 purchased together" }
+        }
+    };
+}
