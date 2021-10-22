@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutKata.Server", "CheckoutKata\Server\CheckoutKata.Server.csproj", "{94EF1925-84C6-4E03-BBC4-966EEC1CE810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutKata.Server", "CheckoutKata\Server\CheckoutKata.Server.csproj", "{94EF1925-84C6-4E03-BBC4-966EEC1CE810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutKata.Client", "CheckoutKata\Client\CheckoutKata.Client.csproj", "{CE93D614-E04F-42DB-BE1D-10D3645C4BA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutKata.Client", "CheckoutKata\Client\CheckoutKata.Client.csproj", "{CE93D614-E04F-42DB-BE1D-10D3645C4BA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutKata.Shared", "CheckoutKata\Shared\CheckoutKata.Shared.csproj", "{64A3967D-B98C-481E-8815-988A07E2018C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutKata.Shared", "CheckoutKata\Shared\CheckoutKata.Shared.csproj", "{64A3967D-B98C-481E-8815-988A07E2018C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
