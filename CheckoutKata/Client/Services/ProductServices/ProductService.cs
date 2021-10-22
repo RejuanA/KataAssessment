@@ -1,46 +1,25 @@
 ﻿using CheckoutKata.Shared;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace CheckoutKata.Client.Services.ProductServices
 {
     public class ProductService : IProductService
     {
+        private readonly HttpClient _http;
         public List<Product> Products { get; set; } = new List<Product>();
+        public ProductService(HttpClient Http) => _http = Http;
 
-        public void LoadProducts()
+        public async Task LoadProducts()
         {
-            Products = new List<Product>
-            {
-                new Product
-                {
-                    Id = 1,
-                    Title = "A",
-                    Price = 10
-                },
-                new Product
-                {
-                    Id = 2,
-                    Title = "B",
-                    Price = 15,
-                    Discount = new Discount{ DiscountTitle = "3 For 40" }
-                },
-                new Product
-                {
-                    Id = 3,
-                    Title = "C",
-                    Price = 40
-                },
-                new Product
-                {
-                    Id = 4,
-                    Title = "D",
-                    Price = 55,
-                    Discount = new Discount{ DiscountTitle = "25% off every 2 purchased together" }
-                }
-            };
+            Products = await _http.GetFromJsonAsync<List<Product>>("api/Product");
+        }
+
+        public async Task<Product> GetProduct(int Id)
+        {
+            return await _http.GetFromJsonAsync<Product>($"api/Product/{Id}");
         }
     }
 }
